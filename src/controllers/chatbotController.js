@@ -240,7 +240,7 @@ let setupProfile = (req, res) => {
 
     let request_body = {
         "get_started": {"payload": "GET_STARTED"},
-        "whitelisted_domains": "https://vulkan-chatbot-for-dentistry.onrender.com"
+        "whitelisted_domains": ["https://vulkan-chatbot-for-dentistry.onrender.com"]
 
     }
 
@@ -255,8 +255,7 @@ let setupProfile = (req, res) => {
         } else {
             console.log('Unable to send message: ' + err)
         }
-    }
-    )
+    });
 
 }
 
