@@ -6,7 +6,7 @@ const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 
 let getHomePage = (req, res) => {
-    return res.render('homepage.ejs');
+    return res.send("Xin chao");
 };
 
 let getWebhook = (req, res) => {
@@ -32,6 +32,7 @@ let getWebhook = (req, res) => {
 
 let postWebhook = (req, res) => {
     let body = req.body
+
     // Send a 200 OK response if this is a page webhook
 
     if (body.object === "page") {
@@ -236,34 +237,10 @@ function callSendAPI(sender_psid, response, kq) {
 
 }
 
-let setupProfile = (req, res) => {
-
-    let request_body = {
-        "get_started": {"payload": "GET_STARTED"},
-        "whitelisted_domains": ["https://vulkan-chatbot-for-dentistry.onrender.com"]
-
-    }
-
-    request({
-        "uri": `https://graph.facebook.com/v9.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log('message sent')
-        } else {
-            console.log('Unable to send message: ' + err)
-        }
-    });
-
-}
-
 
 module.exports = {
     getHomePage,
     getWebhook,
-    postWebhook,
-    setupProfile
+    postWebhook
 
 }
