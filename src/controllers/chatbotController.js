@@ -35,7 +35,6 @@ let postWebhook = (req, res) => {
 
     // Send a 200 OK response if this is a page webhook
 
-    console.log('body: ' + body);
     if (body.object === "page") {
 
         //iterates

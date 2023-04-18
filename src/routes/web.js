@@ -9,8 +9,6 @@ let initWebRoutes = (app) => {
     router.get("/webhook", chatbotController.getWebhook);
     router.post("/webhook", chatbotController.postWebhook);
 
-    // router.post("/setup-profile", chatbotController.setupProfile);
-
     return app.use("/", router)
 };
 
