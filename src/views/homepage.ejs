@@ -17,16 +17,6 @@
 
 
     <div id="fb-root"></div>
-
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
-
-    <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "PAGE-ID");
-        chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
-
-
     <script>
         window.fbAsyncInit = function () {
             FB.init({
@@ -39,7 +29,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
@@ -47,7 +37,6 @@
     <div class="fb-customerchat" attribution="setup_tool" page="100092237461729" theme_color="#0A7CFF"
     logged_in_greeting="Xin chao. Minh Co the Giup Gi Cho Ban"
     logged_out_greeting="Xin chao. Minh Co the Giup Gi Cho Ban">
-    
     </div>
 
 </body>
