@@ -73,10 +73,6 @@ function handleMessage(sender_psid, received_message) {
 
     let response;
 
-    let test = false;
-
-    let randomNumber = Math.floor(Math.random() * (6 - 1) + 1);
-
     //check
     if (received_message.text) {
         console.log(received_message.text);
@@ -93,31 +89,6 @@ function handleMessage(sender_psid, received_message) {
 
     } else if (received_message.attachments) {
         let attachment_url = received_message.attachments[0].payload.url;
-        // response = {
-        //     "attachment": {
-        //         "type": "template",
-        //         "payload": {
-        //             "template_type": "generic",
-        //             "elements": [{
-        //                 "title": "Đây có phải là bức ảnh của bạn không?",
-        //                 "subtitle": "Nhấn nút ở dưới để",
-        //                 "image_url": attachment_url
-        //                 // "buttons": [
-        //                 //     {
-        //                 //         "type": "postback",
-        //                 //         "title": "Yes!",
-        //                 //         "payload": "yes",
-        //                 //     },
-        //                 //     {
-        //                 //         "type": "postback",
-        //                 //         "title": "No!",
-        //                 //         "payload": "no",
-        //                 //     }
-        //                 // ]
-        //             }]
-        //         }
-        //     }
-        // }
 
         response = {
             "attachment": {
@@ -125,37 +96,14 @@ function handleMessage(sender_psid, received_message) {
                 "payload": {
                     "url": "https://omnitos.com/wp-content/uploads/2021/04/4ee1ad2ffbb00866fb7c55c61786e95d.jpg",
                     "is_reusable": true
-                    // "template_type": "generic",
-                    // "elements": [{
-                    //     "title": "Đây có phải là bức ảnh của bạn không?",
-                    //     "subtitle": "Nhấn nút ở dưới để",
-                    //     "image_url": attachment_url
-                    //     // "buttons": [
-                    //     //     {
-                    //     //         "type": "postback",
-                    //     //         "title": "Yes!",
-                    //     //         "payload": "yes",
-                    //     //     },
-                    //     //     {
-                    //     //         "type": "postback",
-                    //     //         "title": "No!",
-                    //     //         "payload": "no",
-                    //     //     }
-                    //     // ]
-                    // }]
                 }
             }
         }
-        test = true;
     }
 
     //send the response
 
-    if (test != false) {
-        callSendAPI(sender_psid, response, 2);
-    } else {
-        callSendAPI(sender_psid, response, 1);
-    }
+    callSendAPI(sender_psid, response);
 
 }
 
@@ -180,7 +128,7 @@ function handlePostback(sender_psid, received_postback) {
 }
 
 // Send reponse messages via the Send API
-function callSendAPI(sender_psid, response, kq) {
+function callSendAPI(sender_psid, response) {
 
     let request_body = {
         "recipient": {
@@ -190,65 +138,20 @@ function callSendAPI(sender_psid, response, kq) {
     }
 
     //Send the HTTP
-    if (kq == 1) {
 
-        request({
-            "uri": "https://graph.facebook.com/v2.6/me/messages",
-            "qs": { "access_token": PAGE_ACCESS_TOKEN },
-            "method": "POST",
-            "json": request_body
-        }, (err, res, body) => {
-            if (!err) {
-                console.log('message sent')
-            } else {
-                console.log('Unable to send message: ' + err)
-            }
+    request({
+        "uri": "https://graph.facebook.com/v2.6/me/messages",
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('message sent')
+        } else {
+            console.log('Unable to send message: ' + err)
         }
-        )
-    } else {
-
-        request({
-            "uri": "https://graph.facebook.com/v2.6/me/messages",
-            "qs": { "access_token": PAGE_ACCESS_TOKEN },
-            "method": "POST",
-            "json": request_body
-        }, (err, res, body) => {
-            if (!err) {
-                console.log('message sent')
-            } else {
-                console.log('Unable to send message: ' + err)
-            }
-        }
-        )
-
-        // let responseFake = {
-        //     "text": `á aaaaaa~~~~~~ <3`
-        // }
-
-        // let request_body = {
-        //     "recipient": {
-        //         "id": sender_psid
-        //     },
-        //     "message": responseFake
-        // }
-
-        // request({
-        //     "uri": "https://graph.facebook.com/v2.6/me/messages",
-        //     "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        //     "method": "POST",
-        //     "json": request_body
-        // }, (err, res, body) => {
-        //     if (!err) {
-        //         console.log('message sent')
-        //     } else {
-        //         console.log('Unable to send message: ' + err)
-        //     }
-        // }
-        // )
-
     }
-
-
+    )
 
 }
 
