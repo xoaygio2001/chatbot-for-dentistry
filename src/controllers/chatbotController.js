@@ -161,7 +161,22 @@ function handleMessage(sender_psid, received_message) {
 
 // Handle messaging_postback events
 function handlePostback(sender_psid, received_postback) {
+    let response;
 
+    //
+    let payload = received_postback.payload;
+
+    //
+    if (payload === 'yes') {
+        response = { 'text': "thank!" }
+    } else if (payload === 'no') {
+        response = { 'text': "Oops, try sending orther image." }
+    } else if (payload === "GET_STARTED") {
+        response = { "text": "Ok. Xin chao chung ban den day!" }
+    }
+
+    //
+    callSendAPI(sender_psid, response);
 }
 
 // Send reponse messages via the Send API
