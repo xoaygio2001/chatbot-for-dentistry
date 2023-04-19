@@ -72,9 +72,15 @@ let handleMessage = (sender_psid, received_message) => {
     })
 }
 
+let handlePostback = (sender_psid, received_postback) => {
+    return new Promise(async (resolve, reject) => {
+
+    })
+}
 
 
 module.exports = {
-    handleMessage
+    handleMessage,
+    handlePostback
 
 }
