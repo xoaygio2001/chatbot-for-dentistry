@@ -51,102 +51,24 @@ let getUserName = (sender_psid) => {
     return userName;
 }
 
-let handleMessage = (sender_psid, received_message) => {
+let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            let response;
+            let userName = await getUserName(sender_psid);
 
-            //check
-            if (received_message.text) {
-                console.log(received_message.text);
+            let response = { "text": `Xin chào ${userName} đến Fanpage của chúng tôi!` };
+            
+            await callSendAPI(sender_psid, response);
 
-                if (received_message.text != "luandeptrai") {
-                    response = {
-                        "text": `You just sending me "${received_message.text}". Get Out My Way!`
-                    }
-                } else {
-                    response = {
-                        "text": `Luân đẹp trai là dĩ nhiên rồi! Em yêu anh ấy <3`
-                    }
-                }
+            resolve("done")
 
-            } else if (received_message.attachments) {
-                let attachment_url = received_message.attachments[0].payload.url;
-
-                response = {
-                    "attachment": {
-                        "type": "image",
-                        "payload": {
-                            "url": "https://omnitos.com/wp-content/uploads/2021/04/4ee1ad2ffbb00866fb7c55c61786e95d.jpg",
-                            "is_reusable": true
-                        }
-                    }
-                }
-            }
-
-            //send the response
-
-            callSendAPI(sender_psid, response);
-
-            resolve('done');
-
-        } catch (e) {
+        } catch(e) {
             reject(e);
         }
     })
 }
 
-let handlePostback = (sender_psid, received_postback) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-
-            let response;
-
-            //
-            let payload = received_postback.payload;
-
-            //
-            if (payload === 'yes') {
-                response = { 'text': "thank!" }
-            } else if (payload === 'no') {
-                response = { 'text': "Oops, try sending orther image." }
-            } else if (payload === "GET_STARTED") {
-                response = { "text": "Ok. Xin chao chung ban den day!" }
-            }
-
-            //
-            callSendAPI(sender_psid, response);
-
-            resolve("done");
-
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
-
-let handleGetStarted = (sender_psid, payload) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let response;
-            switch(payload) {
-                case "GET_STARTED":
-                    response = { "text": "Ok. Xin chao chung ban den day!" }
-                  break;
-                case y:
-                  // code block
-                  break;
-              }
-
-        } catch(e) {
-
-        }
-    })
-}
-
 module.exports = {
-    handleMessage,
-    handlePostback
-
+    handleGetStarted
 }
