@@ -1,7 +1,10 @@
 require("dotenv").config();
 import request from "request";
 
-import { handleGetStarted } from "../services/chatbotService";
+import {
+    handleGetStarted,
+    handleGetGuide
+} from "../services/chatbotService";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -122,8 +125,8 @@ function handlePostback(sender_psid, received_postback) {
         case "GET_STARTED":
             handleGetStarted(sender_psid)
             break;
-        case y:
-            // code block
+        case "HOW_TO_BOOKING_DOCTOR":
+            handleGetGuide(sender_psid)
             break;
     }
 
@@ -191,13 +194,13 @@ let setupPersistentMenu = (req, res) => {
                 "call_to_actions": [
                     {
                         "type": "postback",
-                        "title": "Talk to an agent",
-                        "payload": "CARE_HELP"
+                        "title": "Hướng dẫn đặt lịch hẹn khám bệnh",
+                        "payload": "HOW_TO_BOOKING_DOCTOR"
                     },
                     {
                         "type": "postback",
-                        "title": "Outfit suggestions",
-                        "payload": "CURATION"
+                        "title": "Khởi động lại bot",
+                        "payload": "RESTART_CHATBOT"
                     },
                     {
                         "type": "web_url",

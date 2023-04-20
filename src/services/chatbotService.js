@@ -3,6 +3,8 @@ require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
+const GUILE_BOOK_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+
 let callSendAPI = (sender_psid, response) => {
     let request_body = {
         "recipient": {
@@ -73,6 +75,37 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 
+let handleGetGuide = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            await sendPicture(sender_psid, GUILE_BOOK_DOCTOR)
+
+            resolve("done")
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let sendPicture = (sender_psid, data) => {
+    data.map(async (key, value) => {
+        let response = {
+            "attachment": {
+                "type": "image",
+                "payload": {
+                    "url": value,
+                    "is_reusable": true
+                }
+            }
+        };
+
+        await callSendAPI(sender_psid, response);
+    })
+}
+
 module.exports = {
-    handleGetStarted
+    handleGetStarted,
+    handleGetGuide
 }
