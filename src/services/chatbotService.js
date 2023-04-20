@@ -74,7 +74,30 @@ let handleMessage = (sender_psid, received_message) => {
 
 let handlePostback = (sender_psid, received_postback) => {
     return new Promise(async (resolve, reject) => {
+        try {
 
+            let response;
+
+            //
+            let payload = received_postback.payload;
+
+            //
+            if (payload === 'yes') {
+                response = { 'text': "thank!" }
+            } else if (payload === 'no') {
+                response = { 'text': "Oops, try sending orther image." }
+            } else if (payload === "GET_STARTED") {
+                response = { "text": "Ok. Xin chao chung ban den day!" }
+            }
+
+            //
+            callSendAPI(sender_psid, response);
+
+            resolve("done");
+
+        } catch (e) {
+            reject(e)
+        }
     })
 }
 

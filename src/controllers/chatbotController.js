@@ -1,6 +1,8 @@
 require("dotenv").config();
 import request from "request";
 
+import chatbotService from "../services/chatbotService";
+
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
@@ -51,9 +53,11 @@ let postWebhook = (req, res) => {
             //check if the event
             //pass the event
             if (webhook_event.message) {
-                handleMessage(sender_psid, webhook_event.message);
+                // handleMessage(sender_psid, webhook_event.message);
+                chatbotService.handleMessage(sender_psid, webhook_event.message)
             } else if (webhook_event.postback) {
-                handlePostback(sender_psid, webhook_event.postback);
+                // handlePostback(sender_psid, webhook_event.postback);
+                chatbotService.handlePostback(sender_psid, webhook_event.postback)
             }
         })
 
