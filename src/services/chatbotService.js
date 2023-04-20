@@ -29,26 +29,30 @@ let callSendAPI = (sender_psid, response) => {
 
 let getUserName = (sender_psid) => {
 
-    let userName;
+    return new Promise(async (resolve, reject) => {
 
-    request({
-        "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name&access_token=${PAGE_ACCESS_TOKEN}`,
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "GET",
-    }, (err, res, body) => {
-        console.log(body)
-        if (!err) {
-            let response = JSON.parse(res);
+        request({
+            "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name&access_token=${PAGE_ACCESS_TOKEN}`,
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "method": "GET",
+        }, (err, res, body) => {
+            console.log(body)
+            if (!err) {
+                let response = JSON.parse(body);
 
-            userName = `${response.first_name} ${response.last_name}`;
+                let userName = `${response.first_name} ${response.last_name}`;
+                resolve(userName)
 
-            console.log('message sent')
-        } else {
-            console.log('Unable to send message: ' + err)
-        }
-    })
+            } else {
+                console.log('Unable to send message: ' + err)
+                reject(err)
+            }
+        })
 
-    return userName;
+
+    });
+
+
 }
 
 let handleGetStarted = (sender_psid) => {
@@ -58,12 +62,12 @@ let handleGetStarted = (sender_psid) => {
             let userName = await getUserName(sender_psid);
 
             let response = { "text": `Xin chào ${userName} đến Fanpage của chúng tôi!` };
-            
+
             await callSendAPI(sender_psid, response);
 
             resolve("done")
 
-        } catch(e) {
+        } catch (e) {
             reject(e);
         }
     })
