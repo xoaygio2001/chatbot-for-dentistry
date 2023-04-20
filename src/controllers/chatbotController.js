@@ -1,7 +1,7 @@
 require("dotenv").config();
 import request from "request";
 
-import {handleGetStarted } from "../services/chatbotService";
+import { handleGetStarted } from "../services/chatbotService";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -116,14 +116,17 @@ function handlePostback(sender_psid, received_postback) {
     //
     let payload = received_postback.payload;
 
-    //
-    if (payload === 'yes') {
-        response = { 'text': "thank!" }
-    } else if (payload === 'no') {
-        response = { 'text': "Oops, try sending orther image." }
-    } else if (payload === "GET_STARTED") {
-        handleGetStarted(sender_psid)
+
+    switch (payload) {
+        case "RESTART_CHATBOT":
+        case "GET_STARTED":
+            handleGetStarted(sender_psid)
+            break;
+        case y:
+            // code block
+            break;
     }
+
 }
 
 // Send reponse messages via the Send API
@@ -179,11 +182,56 @@ let setupProfile = (req, res) => {
 
 }
 
+let setupPersistentMenu = (req, res) => {
+    let request_body = {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "postback",
+                        "title": "Talk to an agent",
+                        "payload": "CARE_HELP"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Outfit suggestions",
+                        "payload": "CURATION"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "Shop now",
+                        "url": "https://www.originalcoastclothing.com/",
+                        "webview_height_ratio": "full"
+                    }
+                ]
+            }
+        ]
+    }
+
+    //Send the HTTP
+    request({
+        "uri": `https://graph.facebook.com/v9.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('persistent menu send')
+        } else {
+            console.log('persistent menu not send: ' + err)
+        }
+    }
+    )
+}
+
 
 module.exports = {
     getHomePage,
     getWebhook,
     postWebhook,
-    setupProfile
+    setupProfile,
+    setupPersistentMenu
 
 }
