@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-let callSendAPI = () => {
+let callSendAPI = (sender_psid, response) => {
     let request_body = {
         "recipient": {
             "id": sender_psid
@@ -29,7 +29,7 @@ let callSendAPI = () => {
 
 let getUserName = (sender_psid) => {
 
-    let userName = '';
+    let userName;
 
     request({
         "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
@@ -126,6 +126,24 @@ let handlePostback = (sender_psid, received_postback) => {
     })
 }
 
+let handleGetStarted = (sender_psid, payload) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response;
+            switch(payload) {
+                case "GET_STARTED":
+                    response = { "text": "Ok. Xin chao chung ban den day!" }
+                  break;
+                case y:
+                  // code block
+                  break;
+              }
+
+        } catch(e) {
+
+        }
+    })
+}
 
 module.exports = {
     handleMessage,
