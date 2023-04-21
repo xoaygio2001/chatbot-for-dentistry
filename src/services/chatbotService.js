@@ -157,7 +157,7 @@ let handleGetGuide = (sender_psid) => {
 }
 
 let sendPicture = (sender_psid, data) => {
-    data.map(async (key, value) => {
+    data.map(async (value) => {
         let response = {
             "attachment": {
                 "type": "image",
@@ -167,8 +167,12 @@ let sendPicture = (sender_psid, data) => {
                 }
             }
         };
-
+        console.log('da xuong day')
         await callSendAPI(sender_psid, response);
+
+        console.log('da qua day')
+
+        console.log(response)
     })
 }
 
