@@ -3,7 +3,11 @@ require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-const GUILE_BOOK_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+const IMG_PROCESS_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+const IMG_COST_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+const IMG_CANCEL_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+const IMG_REALIABLE_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+const IMG_FEEDBACK_FOR_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 
 const IMG_HOW_ABOUT_BOOKINGCARE = 'http://surl.li/gneut';
 
@@ -89,7 +93,7 @@ let handleGetStarted = (sender_psid) => {
                                         "type": "postback",
                                         "title": "Quy trình đặt lịch hẹn",
                                         "payload": "PROCESS_BOOKING_APPOINTMENT"
-                                    }, 
+                                    },
                                     {
                                         "type": "postback",
                                         "title": "Giá cả",
@@ -142,11 +146,27 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 
-let handleGetGuide = (sender_psid) => {
+let handleGetGuide = (sender_psid, payload) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            await sendPicture(sender_psid, GUILE_BOOK_DOCTOR)
+            switch (payload) {
+                case "PROCESS_BOOKING_APPOINTMENT":
+                    await sendPicture(sender_psid,IGM_PROCESS_BOOKING_APPOINTMENT)
+                    break;
+                case "COST_BOOKING_APPOINTMENT":
+                    await sendPicture(sender_psid,IGM_COST_BOOKING_APPOINTMENT)
+                    break;
+                case "CANCEL_APPOINTMENT":
+                    await sendPicture(sender_psid,IGM_CANCEL_APPOINTMENT)
+                    break;
+                case "REALIABLE_DOCTOR":
+                    await sendPicture(sender_psid,IGM_REALIABLE_DOCTOR)
+                    break;
+                case "FEEDBACK_FOR_DOCTOR":
+                    await sendPicture(sender_psid,IGM_FEEDBACK_FOR_DOCTOR)
+                    break;
+            }
 
             resolve("done")
 

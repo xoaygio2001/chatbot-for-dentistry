@@ -119,15 +119,10 @@ function handlePostback(sender_psid, received_postback) {
     //
     let payload = received_postback.payload;
 
-
-    switch (payload) {
-        case "RESTART_CHATBOT":
-        case "GET_STARTED":
-            handleGetStarted(sender_psid)
-            break;
-        case "PROCESS_BOOKING_APPOINTMENT":
-            handleGetGuide(sender_psid)
-            break;
+    if(payload == "RESTART_CHATBOT" || "GET_STARTED"){
+        handleGetStarted(sender_psid)
+    } else {
+        handleGetGuide(sender_psid,payload)
     }
 
 }
@@ -232,27 +227,27 @@ let setupPersistentMenu = (req, res) => {
 
 let disableSetUpPersistentMenu = (req, res) => {
     let request_body = {
-        "persistent_menu":[
+        "persistent_menu": [
             {
-              "locale":"default",
-              "disabled_surfaces": ["CUSTOMER_CHAT_PLUGIN"],
-              "composer_input_disabled": false,
-              "call_to_actions":[
-                {
-                  "title":"Đến trang chủ BookingCare",
-                  "type":"web_url",
-                  "url": "https://www.originalcoastclothing.com/",
-                  "webview_height_ratio": "full"
-                },
-                {
-                    "title":"Khởi động lại bot",
-                    "type":"postback",
-                    "payload":"RESTART_CHATBOT"
-                }
-              ]
+                "locale": "default",
+                "disabled_surfaces": ["CUSTOMER_CHAT_PLUGIN"],
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "title": "Đến trang chủ BookingCare",
+                        "type": "web_url",
+                        "url": "https://www.originalcoastclothing.com/",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "title": "Khởi động lại bot",
+                        "type": "postback",
+                        "payload": "RESTART_CHATBOT"
+                    }
+                ]
 
             }
-          ]
+        ]
     }
 
     //Send the HTTP
@@ -263,8 +258,8 @@ let disableSetUpPersistentMenu = (req, res) => {
         "json": request_body
     }, (err, res, body) => {
         if (!err) {
-            
-            
+
+
         } else {
             console.log('disable persistent menu not send: ' + err)
         }
