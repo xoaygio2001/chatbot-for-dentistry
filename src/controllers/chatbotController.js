@@ -190,6 +190,7 @@ let setupPersistentMenu = (req, res) => {
         "persistent_menu": [
             {
                 "locale": "default",
+                "disabled_surfaces": ["CUSTOMER_CHAT_PLUGIN"],
                 "composer_input_disabled": false,
                 "call_to_actions": [
                     {
@@ -229,12 +230,55 @@ let setupPersistentMenu = (req, res) => {
     )
 }
 
+let disableSetUpPersistentMenu = (req, res) => {
+    let request_body = {
+        "persistent_menu":[
+            {
+              "locale":"default",
+              "disabled_surfaces": ["CUSTOMER_CHAT_PLUGIN"],
+              "composer_input_disabled": false,
+              "call_to_actions":[
+                {
+                  "title":"Đến trang chủ BookingCare",
+                  "type":"web_url",
+                  "url": "https://www.originalcoastclothing.com/",
+                  "webview_height_ratio": "full"
+                },
+                {
+                    "title":"My Accountsss",
+                    "type":"postback",
+                    "payload":"PAYBILL_PAYLOAD"
+                }
+              ]
+
+            }
+          ]
+    }
+
+    //Send the HTTP
+    request({
+        "uri": `https://graph.facebook.com/v9.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            
+            
+        } else {
+            console.log('disable persistent menu not send: ' + err)
+        }
+    }
+    )
+}
+
 
 module.exports = {
     getHomePage,
     getWebhook,
     postWebhook,
     setupProfile,
-    setupPersistentMenu
+    setupPersistentMenu,
+    disableSetUpPersistentMenu
 
 }

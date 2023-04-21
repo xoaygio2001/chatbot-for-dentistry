@@ -12,6 +12,8 @@ let initWebRoutes = (app) => {
     router.post("/setup-profile",chatbotController.setupProfile);
 
     router.post("/setup-persistent-menu",chatbotController.setupPersistentMenu);
+    router.post("/disable-setup-persistent-menu",chatbotController.disableSetUpPersistentMenu);
+    
 
 
     return app.use("/", router)
