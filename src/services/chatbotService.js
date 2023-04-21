@@ -152,19 +152,19 @@ let handleGetGuide = (sender_psid, payload) => {
 
             switch (payload) {
                 case "PROCESS_BOOKING_APPOINTMENT":
-                    await sendPicture(sender_psid,IGM_PROCESS_BOOKING_APPOINTMENT)
+                    await sendPicture(sender_psid,IMG_PROCESS_BOOKING_APPOINTMENT)
                     break;
                 case "COST_BOOKING_APPOINTMENT":
-                    await sendPicture(sender_psid,IGM_COST_BOOKING_APPOINTMENT)
+                    await sendPicture(sender_psid,IMG_COST_BOOKING_APPOINTMENT)
                     break;
                 case "CANCEL_APPOINTMENT":
-                    await sendPicture(sender_psid,IGM_CANCEL_APPOINTMENT)
+                    await sendPicture(sender_psid,IMG_CANCEL_APPOINTMENT)
                     break;
                 case "REALIABLE_DOCTOR":
-                    await sendPicture(sender_psid,IGM_REALIABLE_DOCTOR)
+                    await sendPicture(sender_psid,IMG_REALIABLE_DOCTOR)
                     break;
                 case "FEEDBACK_FOR_DOCTOR":
-                    await sendPicture(sender_psid,IGM_FEEDBACK_FOR_DOCTOR)
+                    await sendPicture(sender_psid,IMG_FEEDBACK_FOR_DOCTOR)
                     break;
             }
 
