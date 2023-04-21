@@ -119,7 +119,7 @@ function handlePostback(sender_psid, received_postback) {
     //
     let payload = received_postback.payload;
 
-    if(payload == "RESTART_CHATBOT" || "GET_STARTED"){
+    if(payload == "RESTART_CHATBOT" || payload == "GET_STARTED"){
         handleGetStarted(sender_psid)
     } else {
         handleGetGuide(sender_psid,payload)
