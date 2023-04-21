@@ -126,7 +126,6 @@ function handlePostback(sender_psid, received_postback) {
             handleGetStarted(sender_psid)
             break;
         case "PROCESS_BOOKING_APPOINTMENT":
-            console.log('da qua process booking');
             handleGetGuide(sender_psid)
             break;
     }
@@ -246,9 +245,9 @@ let disableSetUpPersistentMenu = (req, res) => {
                   "webview_height_ratio": "full"
                 },
                 {
-                    "title":"My Accountsss",
+                    "title":"Khởi động lại bot",
                     "type":"postback",
-                    "payload":"PAYBILL_PAYLOAD"
+                    "payload":"RESTART_CHATBOT"
                 }
               ]
 

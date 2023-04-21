@@ -87,17 +87,17 @@ let handleGetStarted = (sender_psid) => {
                                 "buttons": [
                                     {
                                         "type": "postback",
-                                        "title": "Quy trình đặt lịch hẹn khám bệnh như thế nào",
+                                        "title": "Quy trình đặt lịch hẹn",
                                         "payload": "PROCESS_BOOKING_APPOINTMENT"
                                     }, 
                                     {
                                         "type": "postback",
-                                        "title": "Giá cả có phải chăng không",
+                                        "title": "Giá cả",
                                         "payload": "COST_BOOKING_APPOINTMENT"
                                     },
                                     {
                                         "type": "postback",
-                                        "title": "Tôi đặt lịch hẹn nhằm thì làm thế nào để hủy",
+                                        "title": "Hủy lịch hẹn",
                                         "payload": "CANCEL_APPOINTMENT"
                                     }
 
@@ -115,11 +115,11 @@ let handleGetStarted = (sender_psid) => {
                                 "buttons": [
                                     {
                                         "type": "postback",
-                                        "title": "Bác sĩ có uy tín không",
+                                        "title": "Uy tín của bác sĩ",
                                         "payload": "REALIABLE_DOCTOR"
                                     }, {
                                         "type": "postback",
-                                        "title": "Tôi muốn góp ý cho bác sĩ đã khám cho tôi thì làm như thế nào",
+                                        "title": "Phản hồi bác sĩ",
                                         "payload": "FEEDBACK_FOR_DOCTOR"
                                     }
                                 ]
@@ -167,12 +167,9 @@ let sendPicture = (sender_psid, data) => {
                 }
             }
         };
-        console.log('da xuong day')
+
         await callSendAPI(sender_psid, response);
 
-        console.log('da qua day')
-
-        console.log(response)
     })
 }
 
