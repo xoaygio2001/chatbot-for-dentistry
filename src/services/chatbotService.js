@@ -76,65 +76,51 @@ let handleGetStarted = (sender_psid) => {
                         "template_type": "generic",
                         "elements": [
                             {
-                                "title": "Welcome!",
-                                "image_url": "https://raw.githubusercontent.com/fbsamples/original-coast-clothing/main/public/styles/male-work.jpg",
-                                "subtitle": "We have the right hat for everyone.",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://www.originalcoastclothing.com/",
-                                    "webview_height_ratio": "tall"
-                                },
+                                "title": "CÁC VẤN ĐỀ CHUNG VỀ BOOKINGCARE",
+                                "image_url": IMG_HOW_ABOUT_BOOKINGCARE,
+                                "subtitle": "Nhấn vào nút bên dưới để thao tác",
+                                // "default_action": {
+                                //     "type": "web_url",
+                                //     "url": "https://www.originalcoastclothing.com/",
+                                //     "webview_height_ratio": "tall"
+                                // },
                                 "buttons": [
                                     {
-                                        "type": "web_url",
-                                        "url": "https://www.originalcoastclothing.com/",
-                                        "title": "View Website"
-                                    }, {
                                         "type": "postback",
-                                        "title": "Start Chatting",
-                                        "payload": "DEVELOPER_DEFINED_PAYLOAD"
+                                        "title": "Quy trình đặt lịch hẹn khám bệnh như thế nào",
+                                        "payload": "PROCESS_BOOKING_APPOINTMENT"
+                                    }, 
+                                    {
+                                        "type": "postback",
+                                        "title": "Giá cả có phải chăng không",
+                                        "payload": "COST_BOOKING_APPOINTMENT"
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "Tôi đặt lịch hẹn nhằm thì làm thế nào để hủy",
+                                        "payload": "CANCEL_APPOINTMENT"
                                     }
+
                                 ]
                             },
                             {
-                                "title": "Welcome!",
-                                "image_url": "https://raw.githubusercontent.com/fbsamples/original-coast-clothing/main/public/styles/male-work.jpg",
-                                "subtitle": "We have the right hat for everyone.",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://www.originalcoastclothing.com/",
-                                    "webview_height_ratio": "tall"
-                                },
+                                "title": "CÁC VẤN ĐỀ CHUNG VỀ BÁC SĨ!",
+                                "image_url": IMG_HOW_ABOUT_DOCTOR,
+                                "subtitle": "Nhấn vào nút bên dưới để thao tác.",
+                                // "default_action": {
+                                //     "type": "web_url",
+                                //     "url": "https://www.originalcoastclothing.com/",
+                                //     "webview_height_ratio": "tall"
+                                // },
                                 "buttons": [
                                     {
-                                        "type": "web_url",
-                                        "url": "https://www.originalcoastclothing.com/",
-                                        "title": "View Website"
+                                        "type": "postback",
+                                        "title": "Bác sĩ có uy tín không",
+                                        "payload": "REALIABLE_DOCTOR"
                                     }, {
                                         "type": "postback",
-                                        "title": "Start Chatting",
-                                        "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                                    }
-                                ]
-                            },
-                            {
-                                "title": "Welcome!",
-                                "image_url": "https://raw.githubusercontent.com/fbsamples/original-coast-clothing/main/public/styles/male-work.jpg",
-                                "subtitle": "We have the right hat for everyone.",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://www.originalcoastclothing.com/",
-                                    "webview_height_ratio": "tall"
-                                },
-                                "buttons": [
-                                    {
-                                        "type": "web_url",
-                                        "url": "https://www.originalcoastclothing.com/",
-                                        "title": "View Website"
-                                    }, {
-                                        "type": "postback",
-                                        "title": "Start Chatting",
-                                        "payload": "DEVELOPER_DEFINED_PAYLOAD"
+                                        "title": "Tôi muốn góp ý cho bác sĩ đã khám cho tôi thì làm như thế nào",
+                                        "payload": "FEEDBACK_FOR_DOCTOR"
                                     }
                                 ]
                             }
