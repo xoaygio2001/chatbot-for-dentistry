@@ -125,7 +125,7 @@ function handlePostback(sender_psid, received_postback) {
         case "GET_STARTED":
             handleGetStarted(sender_psid)
             break;
-        case "HOW_TO_BOOKING_DOCTOR":
+        case "PROCESS_BOOKING_APPOINTMENT":
             handleGetGuide(sender_psid)
             break;
     }
