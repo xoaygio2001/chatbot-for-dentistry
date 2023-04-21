@@ -126,6 +126,7 @@ function handlePostback(sender_psid, received_postback) {
             handleGetStarted(sender_psid)
             break;
         case "PROCESS_BOOKING_APPOINTMENT":
+            console.log('da qua process booking');
             handleGetGuide(sender_psid)
             break;
     }
