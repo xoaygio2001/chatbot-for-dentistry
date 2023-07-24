@@ -90,33 +90,7 @@ let postWebhook = (req, res) => {
 // Handles messages events
 async function handleMessage(sender_psid, received_message) {
 
-    let content;
-    try {
-        const completion = await openai.createChatCompletion({
-            "model": "gpt-3.5-turbo",
-            "messages": [{ "role": "user", "content": "HELLO" }],
-            "max_tokens": 512,
-            "top_p": 1,
-            "temperature": 0.5,
-            "frequency_penalty": 0,
-            "presence_penalty": 0,
-        });
-        content = completion.data.choices[0].message.content
-        console.log(content)
-    }
-    catch (error) {
-        if (error.response) {
-            console.error(error.response.status, error.response.data);
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            console.error(`Error with OpenAI API request: ${error.message}`);
-            res.status(500).json({
-                error: {
-                    message: 'An error occurred during your request.',
-                }
-            });
-        }
-    }
+    
 
 
     let response;
@@ -127,6 +101,34 @@ async function handleMessage(sender_psid, received_message) {
 
         if (received_message.text != "luandeptrai") {
 
+
+            let content;
+            try {
+                const completion = await openai.createChatCompletion({
+                    "model": "gpt-3.5-turbo",
+                    "messages": [{ "role": "user", "content": `${received_message.text}` }],
+                    "max_tokens": 512,
+                    "top_p": 1,
+                    "temperature": 0.5,
+                    "frequency_penalty": 0,
+                    "presence_penalty": 0,
+                });
+                content = completion.data.choices[0].message.content
+                console.log(content)
+            }
+            catch (error) {
+                if (error.response) {
+                    console.error(error.response.status, error.response.data);
+                    res.status(error.response.status).json(error.response.data);
+                } else {
+                    console.error(`Error with OpenAI API request: ${error.message}`);
+                    res.status(500).json({
+                        error: {
+                            message: 'An error occurred during your request.',
+                        }
+                    });
+                }
+            }
 
 
             response = {
