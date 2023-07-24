@@ -103,7 +103,7 @@ async function handleMessage(sender_psid, received_message) {
             try {
                 const completion = await openai.createChatCompletion({
                     "model": "gpt-3.5-turbo",
-                    "messages": [{ "role": "user", "content": received_message.text }],
+                    "messages": [{ "role": "user", "content": "HELLO" }],
                     "max_tokens": 512,
                     "top_p": 1,
                     "temperature": 0.5,
