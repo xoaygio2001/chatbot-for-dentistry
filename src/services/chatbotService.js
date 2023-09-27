@@ -22,7 +22,7 @@ const IMG_HOW_ABOUT_BOOKINGCARE = 'http://surl.li/gneut';
 
 const IMG_HOW_ABOUT_DOCTOR = 'http://surl.li/gneve';
 
-let callSendAPI = (sender_psid, response) => {
+let callSendAPI = async (sender_psid, response) => {
     let request_body = {
         "recipient": {
             "id": sender_psid
@@ -32,7 +32,7 @@ let callSendAPI = (sender_psid, response) => {
 
     //Send the HTTP
 
-    request({
+    await request({
         "uri": "https://graph.facebook.com/v2.6/me/messages",
         "qs": { "access_token": PAGE_ACCESS_TOKEN },
         "method": "POST",
