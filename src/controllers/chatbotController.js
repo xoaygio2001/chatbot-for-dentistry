@@ -114,7 +114,6 @@ async function handleMessage(sender_psid, received_message) {
                     "presence_penalty": 0,
                 });
                 content = completion.data.choices[0].message.content
-                console.log(content)
             }
             catch (error) {
                 if (error.response) {
