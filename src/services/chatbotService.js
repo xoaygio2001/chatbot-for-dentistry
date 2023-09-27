@@ -1,9 +1,12 @@
 import request from "request";
+
+
+
 require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-const IMG_PROCESS_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
+const IMG_PROCESS_BOOKING_APPOINTMENT = ['../public/a1.png', 'http://surl.li/gmwdq'];
 const IMG_COST_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 const IMG_CANCEL_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 const IMG_REALIABLE_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
