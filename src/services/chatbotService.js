@@ -59,6 +59,10 @@ const IMG_REALIABLE_DOCTOR =
         'https://i.ibb.co/Lx7bNbd/d2.png'
     ];
 
+const IMG_HOW_ABOUT_BOOKINGCARE = 'http://surl.li/gneut';
+
+const IMG_HOW_ABOUT_DOCTOR = 'http://surl.li/gneve';
+
 
 let callSendAPI = (sender_psid, response) => {
     return new Promise((resolve, reject) => {
