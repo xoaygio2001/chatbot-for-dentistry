@@ -143,13 +143,7 @@ async function handleMessage(sender_psid, received_message) {
         let attachment_url = received_message.attachments[0].payload.url;
 
         response = {
-            "attachment": {
-                "type": "image",
-                "payload": {
-                    "url": "https://omnitos.com/wp-content/uploads/2021/04/4ee1ad2ffbb00866fb7c55c61786e95d.jpg",
-                    "is_reusable": true
-                }
-            }
+            "text":'Tôi không hiểu ý định bạn làm gì'
         }
     }
 
