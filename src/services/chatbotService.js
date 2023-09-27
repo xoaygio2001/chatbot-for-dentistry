@@ -5,7 +5,14 @@ require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-const IMG_PROCESS_BOOKING_APPOINTMENT = ['https://i.ibb.co/WFCcyPJ/a1.png', 'http://surl.li/gmwdq'];
+const IMG_PROCESS_BOOKING_APPOINTMENT =
+    [
+        'https://i.ibb.co/WFCcyPJ/a1.png', 
+        'https://i.ibb.co/0YTnRhj/a2.png',
+        'https://i.ibb.co/NyFGZKR/a3.png',
+        'https://i.ibb.co/xL3F2Tr/a4.png',
+        'https://i.ibb.co/dr8N0QY/a5.png'
+    ];
 const IMG_COST_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 const IMG_CANCEL_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 const IMG_REALIABLE_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
@@ -154,19 +161,19 @@ let handleGetGuide = (sender_psid, payload) => {
 
             switch (payload) {
                 case "PROCESS_BOOKING_APPOINTMENT":
-                    await sendPicture(sender_psid,IMG_PROCESS_BOOKING_APPOINTMENT)
+                    await sendPicture(sender_psid, IMG_PROCESS_BOOKING_APPOINTMENT)
                     break;
                 case "COST_BOOKING_APPOINTMENT":
-                    await sendPicture(sender_psid,IMG_COST_BOOKING_APPOINTMENT)
+                    await sendPicture(sender_psid, IMG_COST_BOOKING_APPOINTMENT)
                     break;
                 case "CANCEL_APPOINTMENT":
-                    await sendPicture(sender_psid,IMG_CANCEL_APPOINTMENT)
+                    await sendPicture(sender_psid, IMG_CANCEL_APPOINTMENT)
                     break;
                 case "REALIABLE_DOCTOR":
-                    await sendPicture(sender_psid,IMG_REALIABLE_DOCTOR)
+                    await sendPicture(sender_psid, IMG_REALIABLE_DOCTOR)
                     break;
                 case "FEEDBACK_FOR_DOCTOR":
-                    await sendPicture(sender_psid,IMG_FEEDBACK_FOR_DOCTOR)
+                    await sendPicture(sender_psid, IMG_FEEDBACK_FOR_DOCTOR)
                     break;
             }
 
