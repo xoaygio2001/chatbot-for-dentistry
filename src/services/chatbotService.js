@@ -13,6 +13,7 @@ const IMG_PROCESS_BOOKING_APPOINTMENT =
         'https://i.ibb.co/xL3F2Tr/a4.png',
         'https://i.ibb.co/dr8N0QY/a5.png'
     ];
+const TEXT_COST_BOOKING_APPOINTMENT = ['1. Bạn làm bước 1 như thế này', '2. Bạn làm bước 2 như thế này'];
 const IMG_COST_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 const IMG_CANCEL_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 const IMG_REALIABLE_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
@@ -158,11 +159,12 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 
-let handleGetGuide = (sender_psid, payload) => {
+let handleGetGuide = async (sender_psid, payload) => {
 
     switch (payload) {
-        case "PROCESS_BOOKING_APPOINTMENT":
-            sendPicture(sender_psid, IMG_PROCESS_BOOKING_APPOINTMENT)
+        case "PROCESS_BOOKING_APPOINTMENT":            
+            await sendText(sender_psid, TEXT_COST_BOOKING_APPOINTMENT)
+            await sendPicture(sender_psid, IMG_PROCESS_BOOKING_APPOINTMENT)
             break;
         case "COST_BOOKING_APPOINTMENT":
             sendPicture(sender_psid, IMG_COST_BOOKING_APPOINTMENT)
@@ -192,6 +194,15 @@ let sendPicture = async (sender_psid, data) => {
             }
         };
 
+        await callSendAPI(sender_psid, response);
+    }
+}
+
+let sendText = async (sender_psid, data) => {
+    for (const value of data) {
+        let response = {
+            "text": `${value}`
+        };
         await callSendAPI(sender_psid, response);
     }
 }
