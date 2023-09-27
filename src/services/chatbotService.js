@@ -23,14 +23,42 @@ const IMG_PROCESS_BOOKING_APPOINTMENT =
         'https://i.ibb.co/xL3F2Tr/a4.png',
         'https://i.ibb.co/dr8N0QY/a5.png'
     ];
-const IMG_COST_BOOKING_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
-const IMG_CANCEL_APPOINTMENT = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
-const IMG_REALIABLE_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
-const IMG_FEEDBACK_FOR_DOCTOR = ['http://surl.li/gmwdf', 'http://surl.li/gmwdq'];
 
-const IMG_HOW_ABOUT_BOOKINGCARE = 'http://surl.li/gneut';
 
-const IMG_HOW_ABOUT_DOCTOR = 'http://surl.li/gneve';
+const TEXT_COST_BOOKING_APPOINTMENT =
+    [
+        'Giá mỗi lần khám luôn được đặt ở dưới thông tin của bác bác sĩ. Bạn có thể tham khảo'
+    ];
+
+const IMG_COST_BOOKING_APPOINTMENT =
+    [
+        'https://i.ibb.co/fC0QsDt/b1.png'
+    ];
+
+const TEXT_CANCEL_APPOINTMENT =
+    [
+        'Bạn hãy nhấn vào click ở dưới phần hủy',
+        'Vậy là bạn đã có hủy thành công',
+    ];
+
+const IMG_CANCEL_APPOINTMENT =
+    [
+        'https://i.ibb.co/x7rCknc/c1.png',
+        'https://i.ibb.co/C8KBgp1/c2.png'
+    ];
+
+const TEXT_REALIABLE_DOCTOR =
+    [
+        'Mọi thông tin bác sĩ đã được chúng tôi kiểm chứng.',
+        'Và thông tin đánh giá bác sĩ được công khai và do người dùng đánh giá.',
+    ];
+
+const IMG_REALIABLE_DOCTOR =
+    [
+        'https://i.ibb.co/x17qDJM/d1.png',
+        'https://i.ibb.co/Lx7bNbd/d2.png'
+    ];
+
 
 let callSendAPI = (sender_psid, response) => {
     return new Promise((resolve, reject) => {
@@ -143,10 +171,6 @@ let handleGetStarted = (sender_psid) => {
                                         "type": "postback",
                                         "title": "Uy tín của bác sĩ",
                                         "payload": "REALIABLE_DOCTOR"
-                                    }, {
-                                        "type": "postback",
-                                        "title": "Phản hồi bác sĩ",
-                                        "payload": "FEEDBACK_FOR_DOCTOR"
                                     }
                                 ]
                             }
@@ -176,16 +200,16 @@ let handleGetGuide = async (sender_psid, payload) => {
             await sendPicture(sender_psid, IMG_PROCESS_BOOKING_APPOINTMENT)
             break;
         case "COST_BOOKING_APPOINTMENT":
-            sendPicture(sender_psid, IMG_COST_BOOKING_APPOINTMENT)
+            await sendText(sender_psid, TEXT_COST_BOOKING_APPOINTMENT)
+            await sendPicture(sender_psid, IMG_COST_BOOKING_APPOINTMENT)
             break;
         case "CANCEL_APPOINTMENT":
-            sendPicture(sender_psid, IMG_CANCEL_APPOINTMENT)
+            await sendPicture(sender_psid, TEXT_CANCEL_APPOINTMENT)
+            await sendPicture(sender_psid, IMG_CANCEL_APPOINTMENT)
             break;
         case "REALIABLE_DOCTOR":
-            sendPicture(sender_psid, IMG_REALIABLE_DOCTOR)
-            break;
-        case "FEEDBACK_FOR_DOCTOR":
-            sendPicture(sender_psid, IMG_FEEDBACK_FOR_DOCTOR)
+            await sendPicture(sender_psid, TEXT_REALIABLE_DOCTOR)
+            await sendPicture(sender_psid, IMG_REALIABLE_DOCTOR)
             break;
     }
 
