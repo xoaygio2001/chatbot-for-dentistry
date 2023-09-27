@@ -204,11 +204,11 @@ let handleGetGuide = async (sender_psid, payload) => {
             await sendPicture(sender_psid, IMG_COST_BOOKING_APPOINTMENT)
             break;
         case "CANCEL_APPOINTMENT":
-            await sendPicture(sender_psid, TEXT_CANCEL_APPOINTMENT)
+            await sendText(sender_psid, TEXT_CANCEL_APPOINTMENT)
             await sendPicture(sender_psid, IMG_CANCEL_APPOINTMENT)
             break;
         case "REALIABLE_DOCTOR":
-            await sendPicture(sender_psid, TEXT_REALIABLE_DOCTOR)
+            await sendText(sender_psid, TEXT_REALIABLE_DOCTOR)
             await sendPicture(sender_psid, IMG_REALIABLE_DOCTOR)
             break;
     }
