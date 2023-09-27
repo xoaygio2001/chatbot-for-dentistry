@@ -178,20 +178,19 @@ let handleGetGuide = (sender_psid, payload) => {
 }
 
 let sendPicture = async (sender_psid, data) => {
-    data.map(async (value) => {
-    let response = {
-        "attachment": {
-            "type": "image",
-            "payload": {
-                "url": value,
-                "is_reusable": true
+    for (const value of data) {
+        let response = {
+            "attachment": {
+                "type": "image",
+                "payload": {
+                    "url": value,
+                    "is_reusable": true
+                }
             }
-        }
-    };
+        };
 
-    await callSendAPI(sender_psid, response);
-
-})
+        await callSendAPI(sender_psid, response);
+    }
 }
 
 module.exports = {
