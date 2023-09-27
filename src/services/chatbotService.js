@@ -22,28 +22,31 @@ const IMG_HOW_ABOUT_BOOKINGCARE = 'http://surl.li/gneut';
 
 const IMG_HOW_ABOUT_DOCTOR = 'http://surl.li/gneve';
 
-let callSendAPI = async (sender_psid, response) => {
-    let request_body = {
-        "recipient": {
-            "id": sender_psid
-        },
-        "message": response
-    }
-
-    //Send the HTTP
-
-    await request({
-        "uri": "https://graph.facebook.com/v2.6/me/messages",
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log('message sent')
-        } else {
-            console.log('Unable to send message: ' + err)
+let callSendAPI = (sender_psid, response) => {
+    return new Promise((resolve, reject) => {
+        let request_body = {
+            "recipient": {
+                "id": sender_psid
+            },
+            "message": response
         }
-    })
+
+        // Send the HTTP request
+        request({
+            "uri": "https://graph.facebook.com/v2.6/me/messages",
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "method": "POST",
+            "json": request_body
+        }, (err, res, body) => {
+            if (!err) {
+                console.log('message sent');
+                resolve();
+            } else {
+                console.log('Unable to send message: ' + err);
+                reject(err);
+            }
+        });
+    });
 }
 
 let getUserName = (sender_psid) => {
