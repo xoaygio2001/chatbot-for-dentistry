@@ -125,7 +125,15 @@ let handleGetStarted = (sender_psid) => {
 
             let userName = await getUserName(sender_psid);
 
-            let response1 = { "text": `Xin chào ${userName}. Bạn cần hỗ trợ gì!` };
+            let response1 = {};
+
+            if(userName) {
+                response1 = { "text": `Xin chào ${userName}. Bạn cần hỗ trợ gì!` };
+            } else {
+                response1 = { "text": `Xin chào. Bạn cần hỗ trợ gì!` };
+            }
+
+            
 
             let response2 = {
                 "attachment": {

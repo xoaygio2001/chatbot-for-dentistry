@@ -135,7 +135,7 @@ async function handleMessage(sender_psid, received_message) {
             }
         } else {
             response = {
-                "text": `Luân đẹp trai là dĩ nhiên rồi! Em yêu anh ấy <3`
+                "text": `tôi không hiểu ý bạn nói gì`
             }
         }
 
